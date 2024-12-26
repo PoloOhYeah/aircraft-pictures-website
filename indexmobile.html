@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos d'avion à Gouss</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .gallery-container {
+            width: 80%;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .footer {
+    background-color: #0044cc;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer p {
+    margin: 0;
+    padding: 0;
+}
+
+.footer .social-links {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer .social-links li {
+    display: inline;
+}
+
+.footer .social-links li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer .social-links li a:hover {
+    color: #ffdd57;
+}
+
+        .gallery-header {
+            text-align: center;
+            padding: 20px;
+            background-color: #0044cc;
+            color: #fff;
+            border-bottom: 5px solid #002288;
+        }
+
+        .gallery-header h1 {
+            margin: 0;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .slide img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .slide h2 {
+            margin-top: 10px;
+            color: #0044cc;
+        }
+
+        .slide p {
+            color: #555;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .navigation button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #0044cc;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .navigation button:hover {
+            background-color: #002288;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <div class="gallery-header">
+            <h1>Photos avec le Canon EOS 90D</h1>
+        </div>
+        <div class="slides" id="slides">
+            <div class="slide">
+                <img src="1.jpg" alt="Avion 1">
+                <h2>Airbus A380 Emirates</h2>
+                <p>L'avion quitte les pistes de Roissy CDG depuis la piste la plus au nord, l'A380 d'Emirates à une livré spéciale qui inclus la DUBAI EXPO et promouvois les visites de Dubai.</p>
+            </div>
+            <div class="slide">
+                <img src="2.jpg" alt="Avion 2">
+                <h2>Boeing 777-300ER de KUWAIT Airways</h2>
+                <p>Ce Boeing 777 qui est en approche final pour atterir à Roissy CDG est celui de la compagnie nationale du Koweit (Moyen-Orient), sur l'appareil figure le drapeau du pays et le nom de la compagnie.</p>
+            </div>
+            <div class="slide">
+                <img src="3.jpg" alt="Avion 3">
+                <h2>Boeing 787 Dreamliner de Air France</h2>
+                <p>Ce Boeing 787 de chez Air France qui est lui aussi en approche final pour atterir à CDG, ont peut remarquer le logo "crevette" de la compagnie sur les réacteurs ainsi que son immatriculation (F-HRBF).</p>
+            </div>
+            <div class="slide">
+                <img src="4.jpg" alt="Avion 3">
+                <h2>Airbus A320 de chez EasyJet</h2>
+                <p>L'Airbus d'EasyJet est en partie coloré en orange et atterie également à CDG, ont peut également lire som immatriculation sous l'aile (G-EZDH).</p>
+            </div>
+            <div class="slide">
+                <img src="5.jpg" alt="Avion 3">
+                <h2>Boeing 787 Dreamliner de chez Vistara</h2>
+                <p>Ce Boeing 787 qui appartient à Vistara qui est une compagnie indienne filiale de Tata Sons et Singapore Airlines, ont peut y voir le logo vers l'avant de l'appareil et sa queue peinte entierement.</p>
+            </div>
+            <div class="slide">
+                <img src="6.jpg" alt="Avion 3">
+                <h2>Boeing 747-8 de Korean Air</h2>
+                <p>Cette avion de la Korean Air est reconaissable avec sa couleur bleu et grise ainsi que son logo sur la queue, malheuresement Korean Air à arrêté les destination vers Paris avec ce Boeing 747 et utilise plutôt des Boeing 777.</p>
+            </div>
+        </div>
+        <div class="navigation">
+            <button onclick="prevSlide()">Précédent</button>
+            <button onclick="nextSlide()">Suivant</button>
+        </div>
+        <br>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.getElementById('slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function showSlide(index) {
+            if (index >= totalSlides) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = index;
+            }
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+    </script>
+</body>
+</html>
